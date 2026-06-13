@@ -1,0 +1,38 @@
+{
+  "type": "SIMPLE",
+  "name": "Test Calc",
+  "debugSettings": {
+    "failuresEnabled": true,
+    "allEnabled": false,
+    "allEnabledUntil": 1781363245155
+  },
+  "configurationVersion": 0,
+  "configuration": {
+    "type": "SIMPLE",
+    "arguments": {
+      "active": {
+        "refEntityKey": {
+          "key": "active",
+          "type": "ATTRIBUTE",
+          "scope": "SERVER_SCOPE"
+        },
+        "defaultValue": ""
+      }
+    },
+    "expression": "active",
+    "output": {
+      "type": "TIME_SERIES",
+      "name": "test",
+      "decimalsByDefault": 2,
+      "strategy": {
+        "type": "IMMEDIATE",
+        "ttl": 0,
+        "saveTimeSeries": true,
+        "saveLatest": true,
+        "sendWsUpdate": true,
+        "processCfs": true
+      }
+    },
+    "useLatestTs": false
+  }
+}
