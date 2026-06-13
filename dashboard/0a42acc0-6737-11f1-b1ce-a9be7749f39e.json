@@ -1,0 +1,112 @@
+{
+  "entityType" : "DASHBOARD",
+  "entity" : {
+    "title" : "Test",
+    "image" : null,
+    "mobileHide" : false,
+    "mobileOrder" : null,
+    "configuration" : {
+      "description" : "",
+      "widgets" : {
+        "66d89140-0279-1654-55ac-f56d636adcd0" : {
+          "typeFullFqn" : "system.text",
+          "type" : "static",
+          "sizeX" : 9.5,
+          "sizeY" : 5,
+          "config" : {
+            "datasources" : [ {
+              "type" : "entity",
+              "name" : "",
+              "dataKeys" : [ ]
+            } ],
+            "showTitle" : false,
+            "backgroundColor" : "#fff",
+            "color" : "rgba(0, 0, 0, 0.87)",
+            "padding" : "8px",
+            "settings" : {
+              "cardTitle" : "Tilte is Title",
+              "cardText" : "Notice Notice how we now append the 'vw' and 'px' strings to the numbers pulled from the settings. how we now append the 'vw' and 'px' strings to the numbers pulled from the settings.",
+              "titleColor" : "#030000",
+              "textColor" : "#C2C7D0",
+              "bgColor" : "transparent",
+              "cardPadding" : 1.5,
+              "cardBorderRadius" : 8,
+              "enableShadow" : false
+            },
+            "title" : "Attributes card",
+            "decimals" : null,
+            "dropShadow" : true,
+            "enableFullscreen" : true,
+            "widgetStyle" : { },
+            "widgetCss" : "",
+            "pageSize" : 1024,
+            "noDataDisplayMessage" : ""
+          },
+          "row" : 0,
+          "col" : 0,
+          "id" : "66d89140-0279-1654-55ac-f56d636adcd0"
+        }
+      },
+      "states" : {
+        "default" : {
+          "name" : "Test",
+          "root" : true,
+          "layouts" : {
+            "main" : {
+              "widgets" : {
+                "66d89140-0279-1654-55ac-f56d636adcd0" : {
+                  "sizeX" : 9,
+                  "sizeY" : 5,
+                  "row" : 1,
+                  "col" : 3
+                }
+              },
+              "gridSettings" : {
+                "layoutType" : "default",
+                "backgroundColor" : "#eeeeee",
+                "columns" : 24,
+                "margin" : 10,
+                "outerMargin" : true,
+                "backgroundSizeMode" : "100%"
+              }
+            }
+          }
+        }
+      },
+      "entityAliases" : { },
+      "filters" : { },
+      "timewindow" : {
+        "selectedTab" : 0,
+        "realtime" : {
+          "realtimeType" : 0,
+          "timewindowMs" : 3600000
+        },
+        "aggregation" : {
+          "type" : "NONE",
+          "limit" : 50000
+        }
+      },
+      "settings" : {
+        "stateControllerId" : "entity",
+        "showTitle" : false,
+        "showDashboardsSelect" : true,
+        "showEntitiesSelect" : true,
+        "showDashboardTimewindow" : true,
+        "showDashboardExport" : true,
+        "toolbarAlwaysOpen" : true
+      }
+    },
+    "name" : "Test",
+    "resources" : null,
+    "assignedCustomers" : null,
+    "externalId" : null,
+    "id" : {
+      "entityType" : "DASHBOARD",
+      "id" : "0a42acc0-6737-11f1-b1ce-a9be7749f39e"
+    }
+  },
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  }
+}
