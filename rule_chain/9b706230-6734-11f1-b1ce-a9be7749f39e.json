@@ -7,7 +7,10 @@
     "configuration" : null,
     "debugMode" : true,
     "externalId" : null,
-    "firstRuleNodeId" : null,
+    "firstRuleNodeId" : {
+      "entityType" : "RULE_NODE",
+      "id" : "d8e14bc0-6734-11f1-b1ce-a9be7749f39e"
+    },
     "id" : {
       "entityType" : "RULE_CHAIN",
       "id" : "9b706230-6734-11f1-b1ce-a9be7749f39e"
@@ -18,10 +21,33 @@
   },
   "metaData" : {
     "connections" : null,
-    "firstNodeIndex" : null,
-    "nodes" : [ ],
+    "firstNodeIndex" : 0,
+    "nodes" : [ {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 385,
+        "layoutY" : 147
+      },
+      "configuration" : {
+        "version" : 0
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : null,
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "d8e14bc0-6734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Message Type Switch",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode"
+    } ],
     "ruleChainConnections" : null
   },
+  "relations" : [ ],
   "attributes" : {
     "SERVER_SCOPE" : [ ]
   }
