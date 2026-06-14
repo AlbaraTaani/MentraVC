@@ -15,6 +15,7 @@
     "title" : "aaTestForVC"
   },
   "fqns" : [ "test_time_series", "test_2_" ],
+  "relations" : [ ],
   "attributes" : {
     "SERVER_SCOPE" : [ ]
   }
