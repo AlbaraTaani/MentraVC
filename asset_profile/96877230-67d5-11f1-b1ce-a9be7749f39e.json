@@ -34,7 +34,7 @@
       "expression" : "Environment_Status",
       "output" : {
         "type" : "TIME_SERIES",
-        "name" : "Production_State",
+        "name" : "Development_State",
         "strategy" : {
           "type" : "IMMEDIATE",
           "processCfs" : true,
