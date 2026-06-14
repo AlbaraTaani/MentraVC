@@ -1,0 +1,230 @@
+{
+  "entityType" : "DASHBOARD",
+  "entity" : {
+    "title" : "smartcloude test",
+    "image" : null,
+    "mobileHide" : false,
+    "mobileOrder" : null,
+    "configuration" : {
+      "description" : "",
+      "widgets" : {
+        "bb009624-6b50-15df-2423-82e06c9ab754" : {
+          "typeFullFqn" : "tenant.anas_bus_list",
+          "type" : "timeseries",
+          "sizeX" : 7.5,
+          "sizeY" : 3,
+          "config" : {
+            "datasources" : [ {
+              "type" : "device",
+              "name" : "",
+              "deviceId" : "eb581ff0-5356-11f1-b1ce-a9be7749f39e",
+              "dataKeys" : [ {
+                "name" : "trip_summary",
+                "type" : "timeseries",
+                "label" : "trip_summary",
+                "color" : "#2196f3",
+                "settings" : { }
+              } ],
+              "alarmFilterConfig" : {
+                "statusList" : [ "ACTIVE" ]
+              },
+              "latestDataKeys" : null
+            } ],
+            "showTitle" : true,
+            "backgroundColor" : "#fff",
+            "color" : "rgba(0, 0, 0, 0.87)",
+            "padding" : "8px",
+            "settings" : {
+              "broadcastEventName" : "busTripSelected",
+              "payloadKeyStart" : "startTs",
+              "payloadKeyEnd" : "endTs",
+              "payloadKeyDevice" : "deviceId"
+            },
+            "title" : "Attributes card",
+            "decimals" : null,
+            "useDashboardTimewindow" : true
+          },
+          "row" : 0,
+          "col" : 0,
+          "id" : "bb009624-6b50-15df-2423-82e06c9ab754"
+        },
+        "0e39b6f6-ac38-dd3c-0925-323d816279f0" : {
+          "typeFullFqn" : "system.anas_s_map2",
+          "type" : "latest",
+          "sizeX" : 11.5,
+          "sizeY" : 7,
+          "config" : {
+            "datasources" : [ {
+              "type" : "device",
+              "name" : "",
+              "deviceId" : "eb581ff0-5356-11f1-b1ce-a9be7749f39e",
+              "entityAliasId" : "2f31eb1e-7fc6-acae-1486-96feb453e3a9",
+              "dataKeys" : [ {
+                "name" : "perimeter",
+                "type" : "attribute",
+                "label" : "perimeter",
+                "color" : "#2196f3",
+                "settings" : { }
+              } ],
+              "alarmFilterConfig" : {
+                "statusList" : [ "ACTIVE" ]
+              }
+            } ],
+            "showTitle" : true,
+            "backgroundColor" : "#fff",
+            "color" : "rgba(0, 0, 0, 0.87)",
+            "padding" : "8px",
+            "settings" : {
+              "listenEventName" : "busTripSelected",
+              "payloadKeyStart" : "startTs",
+              "payloadKeyEnd" : "endTs",
+              "payloadKeyDevice" : "deviceId",
+              "jsonKeyLat" : "latitude",
+              "jsonKeyLon" : "longitude",
+              "jsonKeyRadius" : "radius",
+              "defaultLocation" : "amman",
+              "customMapLat" : 31.9539,
+              "customMapLon" : 35.9106,
+              "pathColor" : "#007FFF",
+              "pointRadius" : 5,
+              "drawActualPath" : false,
+              "markerType" : "shape",
+              "markerShape" : "location",
+              "markerIcon" : "directions_bus",
+              "markerSize" : 34,
+              "markerColor" : "#007FFF",
+              "markerEnableoffset" : false,
+              "markerOffsetX" : 0.5,
+              "markerOffsetY" : 0.5,
+              "rotateMarker" : false,
+              "markerRotateAngle" : 0,
+              "showLabel" : false,
+              "labelPattern" : "${entityName}",
+              "labelEnableOffset" : false,
+              "labelOffsetX" : 1,
+              "labelOffsetY" : 0.2,
+              "showTooltip" : true,
+              "tooltipPattern" : "<b>${entityName}</b><br/><br/><b>Latitude:</b> ${latitude:7}<br/><b>Longitude:</b> ${longitude:7}<br/><b>End Time:</b> ${maxTime}<br/><b>Start Time:</b> ${minTime}",
+              "tooltipTrigger" : "click",
+              "autoCloseTooltip" : true,
+              "tooltipOffsetX" : 0,
+              "tooltipOffsetY" : -0.5,
+              "landmarkColor" : "#28a745",
+              "usePaidMap" : false,
+              "usePaidRouting" : false
+            },
+            "title" : "Route Map",
+            "decimals" : null,
+            "showTitleIcon" : false,
+            "titleTooltip" : "",
+            "dropShadow" : true,
+            "enableFullscreen" : true,
+            "widgetStyle" : { },
+            "widgetCss" : "",
+            "titleStyle" : {
+              "fontSize" : "16px",
+              "fontWeight" : 400
+            },
+            "pageSize" : 1024,
+            "noDataDisplayMessage" : ""
+          },
+          "row" : 0,
+          "col" : 0,
+          "id" : "0e39b6f6-ac38-dd3c-0925-323d816279f0"
+        }
+      },
+      "states" : {
+        "default" : {
+          "name" : "smartcloude test",
+          "root" : true,
+          "layouts" : {
+            "main" : {
+              "widgets" : {
+                "bb009624-6b50-15df-2423-82e06c9ab754" : {
+                  "sizeX" : 9,
+                  "sizeY" : 21,
+                  "row" : 0,
+                  "col" : 0
+                },
+                "0e39b6f6-ac38-dd3c-0925-323d816279f0" : {
+                  "sizeX" : 33,
+                  "sizeY" : 23,
+                  "row" : 0,
+                  "col" : 9
+                }
+              },
+              "gridSettings" : {
+                "layoutType" : "default",
+                "backgroundColor" : "#eeeeee",
+                "columns" : 24,
+                "margin" : 10,
+                "outerMargin" : true,
+                "backgroundSizeMode" : "cover",
+                "minColumns" : 24,
+                "viewFormat" : "grid",
+                "autoFillHeight" : false,
+                "rowHeight" : 70,
+                "backgroundImageUrl" : "tb-image;/api/images/tenant/Background (2).png",
+                "mobileAutoFillHeight" : false,
+                "mobileRowHeight" : 70
+              }
+            }
+          }
+        }
+      },
+      "entityAliases" : {
+        "2f31eb1e-7fc6-acae-1486-96feb453e3a9" : {
+          "id" : "2f31eb1e-7fc6-acae-1486-96feb453e3a9",
+          "alias" : "Floor",
+          "filter" : {
+            "type" : "singleEntity",
+            "resolveMultiple" : false,
+            "singleEntity" : {
+              "entityType" : "DEVICE",
+              "id" : "eb581ff0-5356-11f1-b1ce-a9be7749f39e"
+            }
+          }
+        }
+      },
+      "filters" : { },
+      "timewindow" : {
+        "selectedTab" : 0,
+        "realtime" : {
+          "realtimeType" : 0,
+          "timewindowMs" : 2592000000
+        },
+        "aggregation" : {
+          "type" : "NONE",
+          "limit" : 50000
+        }
+      },
+      "settings" : {
+        "stateControllerId" : "entity",
+        "showTitle" : false,
+        "showDashboardsSelect" : true,
+        "showEntitiesSelect" : true,
+        "showDashboardTimewindow" : true,
+        "showDashboardExport" : true,
+        "toolbarAlwaysOpen" : true,
+        "titleColor" : "rgba(0,0,0,0.870588)",
+        "showDashboardLogo" : false,
+        "hideToolbar" : false,
+        "showFilters" : true,
+        "showUpdateDashboardImage" : true,
+        "dashboardCss" : "/* ========================================================== */\r\n/* --- 1. GLOBAL WIDGET OVERRIDES (GLASSMORPHISM) ---         */\r\n/* ========================================================== */\r\n.tb-widget {\r\n    padding: 0 !important;\r\n    border-radius: 20px !important;\r\n    box-shadow: 0px 4px 10px rgba(23, 33, 90, 0.5) !important;\r\n    overflow: hidden !important; \r\n    background: transparent !important;\r\n    backdrop-filter: blur(12px) saturate(120%);\r\n    -webkit-backdrop-filter: blur(12px) saturate(120%);\r\n    \r\n    /* Spring-like transition for hover effects */\r\n    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); \r\n}\r\n\r\n/* Hide default titles */\r\n.tb-widget-title,\r\n.tb-widget-header {\r\n    display: none !important;\r\n}\r\n\r\n/* Remove backgrounds from Logo (1) and Header Text (3) */\r\ngridster-item:nth-of-type(1) .tb-widget,\r\ngridster-item:nth-of-type(3) .tb-widget {\r\n    box-shadow: none !important;\r\n    backdrop-filter: none !important;\r\n    -webkit-backdrop-filter: none !important;\r\n    background: transparent !important;\r\n}\r\n\r\n/* ========================================================== */\r\n/* --- 2. ENTRANCE ANIMATION ASSIGNMENTS ---                  */\r\n/* ========================================================== */\r\n\r\n/* Set initial state for all animated widgets */\r\ngridster-item:nth-of-type(2),\r\ngridster-item:nth-of-type(3),\r\ngridster-item:nth-of-type(4),\r\ngridster-item:nth-of-type(5),\r\ngridster-item:nth-of-type(6),\r\ngridster-item:nth-of-type(7),\r\ngridster-item:nth-of-type(n+8) {\r\n    opacity: 0; \r\n    animation-fill-mode: forwards !important;\r\n}\r\n\r\n/* Widget 1: Logo -> No animation */\r\ngridster-item:nth-of-type(1) {\r\n    opacity: 1 !important;\r\n    animation: none !important;\r\n}\r\n\r\n/* Widget 2: Navbar -> Slide Down (y:-20 to 0) */\r\ngridster-item:nth-of-type(2) {\r\n    animation: slideDown 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;\r\n    animation-delay: 0s !important;\r\n}\r\n\r\n/* Widget 3: Header -> Slide Up (y:20 to 0) | Delay: 0.3s */\r\ngridster-item:nth-of-type(3) {\r\n    animation: slideUp20 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;\r\n    animation-delay: 0.3s !important;\r\n}\r\n\r\n/* Widgets 4-7: KPI Cards -> Slide Up (y:30 to 0) | Delay: 0.5s */\r\ngridster-item:nth-of-type(4),\r\ngridster-item:nth-of-type(5),\r\ngridster-item:nth-of-type(6),\r\ngridster-item:nth-of-type(7) {\r\n    animation: slideUp30 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;\r\n    animation-delay: 0.5s !important;\r\n}\r\n\r\n/* Widgets 8+: Chart & Insights -> Slide Up (y:40 to 0) | Delay: 0.7s */\r\ngridster-item:nth-of-type(n+8) {\r\n    animation: slideUp40 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;\r\n    animation-delay: 0.7s !important;\r\n}\r\n\r\n/* ========================================================== */\r\n/* --- 3. HOVER EFFECTS & MICRO-ANIMATIONS ---                */\r\n/* ========================================================== */\r\n\r\n/* Spring Hover Scale to 1.02 for KPI Cards and Insight Card */\r\ngridster-item:nth-of-type(4):hover .tb-widget,\r\ngridster-item:nth-of-type(5):hover .tb-widget,\r\ngridster-item:nth-of-type(6):hover .tb-widget,\r\ngridster-item:nth-of-type(7):hover .tb-widget,\r\ngridster-item:nth-of-type(9):hover .tb-widget {\r\n    /*transform: scale(1.02);*/\r\n}\r\n\r\n/* Date Pill Hover (Assuming it has a class like .date-pill in Widget 3) */\r\ngridster-item:nth-of-type(3) .date-pill {\r\n    transition: all 0.2s ease;\r\n}\r\ngridster-item:nth-of-type(3) .date-pill:hover {\r\n    transform: scale(1.05);\r\n    background-color: rgba(255, 255, 255, 0.2) !important;\r\n}\r\ngridster-item:nth-of-type(3) .date-pill:active {\r\n    transform: scale(0.95);\r\n}\r\n\r\n/* Key Insights Wiggle (Targets any image inside Widget 9) */\r\ngridster-item:nth-of-type(9) img {\r\n    animation: wigglePause 5s infinite;\r\n}\r\n\r\n/* ========================================================== */\r\n/* --- 4. KEYFRAMES ---                                       */\r\n/* ========================================================== */\r\n\r\n@keyframes slideDown {\r\n    0% { transform: translateY(-20px); opacity: 0; }\r\n    100% { transform: translateY(0); opacity: 1; }\r\n}\r\n\r\n@keyframes slideUp20 {\r\n    0% { transform: translateY(20px); opacity: 0; }\r\n    100% { transform: translateY(0); opacity: 1; }\r\n}\r\n\r\n@keyframes slideUp30 {\r\n    0% { transform: translateY(30px); opacity: 0; }\r\n    100% { transform: translateY(0); opacity: 1; }\r\n}\r\n\r\n@keyframes slideUp40 {\r\n    0% { transform: translateY(40px); opacity: 0; }\r\n    100% { transform: translateY(0); opacity: 1; }\r\n}\r\n\r\n/* Wiggle over 2 seconds, then pause for 3 seconds (5s total loop) */\r\n@keyframes wigglePause {\r\n    0%, 40%, 100% { transform: rotate(0deg); }\r\n    5% { transform: rotate(10deg); }\r\n    15% { transform: rotate(-10deg); }\r\n    25% { transform: rotate(10deg); }\r\n    35% { transform: rotate(-10deg); }\r\n}"
+      }
+    },
+    "name" : "smartcloude test",
+    "resources" : null,
+    "assignedCustomers" : null,
+    "externalId" : null,
+    "id" : {
+      "entityType" : "DASHBOARD",
+      "id" : "a96ae3f0-5380-11f1-b1ce-a9be7749f39e"
+    }
+  },
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  }
+}

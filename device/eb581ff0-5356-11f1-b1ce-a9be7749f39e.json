@@ -1,0 +1,111 @@
+{
+  "entityType" : "DEVICE",
+  "entity" : {
+    "additionalInfo" : {
+      "gateway" : false,
+      "overwriteActivityTime" : false,
+      "description" : ""
+    },
+    "customerId" : {
+      "entityType" : "CUSTOMER",
+      "id" : "13814000-1dd2-11b2-8080-808080808080"
+    },
+    "deviceData" : {
+      "configuration" : {
+        "type" : "DEFAULT"
+      },
+      "transportConfiguration" : {
+        "type" : "DEFAULT"
+      }
+    },
+    "deviceProfileId" : {
+      "entityType" : "DEVICE_PROFILE",
+      "id" : "d9c2c830-5356-11f1-b1ce-a9be7749f39e"
+    },
+    "externalId" : null,
+    "firmwareId" : null,
+    "id" : {
+      "entityType" : "DEVICE",
+      "id" : "eb581ff0-5356-11f1-b1ce-a9be7749f39e"
+    },
+    "label" : "",
+    "name" : "tempdevice_Bus-01",
+    "softwareId" : null,
+    "type" : "School Bus"
+  },
+  "credentials" : {
+    "credentialsId" : "N0oqH1iSTD2r1ou5mTGW",
+    "credentialsType" : "ACCESS_TOKEN",
+    "credentialsValue" : null
+  },
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ {
+      "booleanValue" : false,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "active",
+      "lastUpdateTs" : 1779603385242,
+      "longValue" : null,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "current_stops_count",
+      "lastUpdateTs" : 1779602751133,
+      "longValue" : 2,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "inactivityAlarmTime",
+      "lastUpdateTs" : 1779603385238,
+      "longValue" : 1779603385237,
+      "strValue" : null
+    }, {
+      "booleanValue" : true,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "is_bus_parking",
+      "lastUpdateTs" : 1779602751133,
+      "longValue" : null,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "lastActivityTime",
+      "lastUpdateTs" : 1779602767957,
+      "longValue" : 1779602767948,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "last_parked_data",
+      "lastUpdateTs" : 1779602767957,
+      "longValue" : null,
+      "strValue" : "{\"ts\":\"1779602767948\",\"payload\":{\"battery\":97,\"geofence_status\":\"unset\",\"longitude\":35.874050000000004,\"latitude\":31.984050000000003,\"motion_status\":\"moving\",\"position\":\"normal\",\"temperature\":26.5}}"
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "number_of_stops",
+      "lastUpdateTs" : 1779176858147,
+      "longValue" : 2,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : "{\"latitude\":31.984,\"longitude\":35.874,\"radius\":100}",
+      "key" : "perimeter",
+      "lastUpdateTs" : 1779192759897,
+      "longValue" : null,
+      "strValue" : null
+    } ],
+    "SHARED_SCOPE" : [ ]
+  },
+  "calculatedFields" : [ ]
+}

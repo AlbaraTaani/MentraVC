@@ -1,0 +1,169 @@
+{
+  "entityType" : "ASSET",
+  "entity" : {
+    "additionalInfo" : {
+      "description" : ""
+    },
+    "assetProfileId" : {
+      "entityType" : "ASSET_PROFILE",
+      "id" : "f5074c20-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "customerId" : {
+      "entityType" : "CUSTOMER",
+      "id" : "13814000-1dd2-11b2-8080-808080808080"
+    },
+    "externalId" : null,
+    "id" : {
+      "entityType" : "ASSET",
+      "id" : "f62650b0-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "label" : null,
+    "name" : "Room A",
+    "type" : "Room"
+  },
+  "relations" : [ {
+    "additionalInfo" : null,
+    "from" : {
+      "entityType" : "ASSET",
+      "id" : "e0ec8200-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "to" : {
+      "entityType" : "ASSET",
+      "id" : "f62650b0-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "type" : "Contains",
+    "typeGroup" : "COMMON",
+    "version" : 41121
+  }, {
+    "additionalInfo" : null,
+    "from" : {
+      "entityType" : "ASSET",
+      "id" : "f62650b0-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "to" : {
+      "entityType" : "DEVICE",
+      "id" : "2143c2a0-5cde-11f1-b1ce-a9be7749f39e"
+    },
+    "type" : "Contains",
+    "typeGroup" : "COMMON",
+    "version" : 41123
+  }, {
+    "additionalInfo" : null,
+    "from" : {
+      "entityType" : "ASSET",
+      "id" : "f62650b0-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "to" : {
+      "entityType" : "DEVICE",
+      "id" : "346845e0-5cde-11f1-b1ce-a9be7749f39e"
+    },
+    "type" : "Contains",
+    "typeGroup" : "COMMON",
+    "version" : 41125
+  }, {
+    "additionalInfo" : null,
+    "from" : {
+      "entityType" : "ASSET",
+      "id" : "f62650b0-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "to" : {
+      "entityType" : "DEVICE",
+      "id" : "3c40a280-5cde-11f1-b1ce-a9be7749f39e"
+    },
+    "type" : "Contains",
+    "typeGroup" : "COMMON",
+    "version" : 41124
+  } ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "comfort_score_count",
+      "lastUpdateTs" : 1780297138245,
+      "longValue" : 2,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "comfort_score_sum",
+      "lastUpdateTs" : 1780297138245,
+      "longValue" : 178,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "employees_present_count",
+      "lastUpdateTs" : 1780297137835,
+      "longValue" : 2,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "employees_present_sum",
+      "lastUpdateTs" : 1780297137835,
+      "longValue" : 113,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "humidity_count",
+      "lastUpdateTs" : 1780297138656,
+      "longValue" : 3,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "humidity_sum",
+      "lastUpdateTs" : 1780297138656,
+      "longValue" : 198,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "last_calc_time",
+      "lastUpdateTs" : 1780231747761,
+      "longValue" : 0,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "last_eval_time",
+      "lastUpdateTs" : 1780297123333,
+      "longValue" : 1780297123297,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "monitoring_window_seconds",
+      "lastUpdateTs" : 1780295729582,
+      "longValue" : 30,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "tally_count",
+      "lastUpdateTs" : 1780231739202,
+      "longValue" : 0,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "tally_sum",
+      "lastUpdateTs" : 1780231725952,
+      "longValue" : 0,
+      "strValue" : null
+    } ]
+  },
+  "calculatedFields" : [ ]
+}

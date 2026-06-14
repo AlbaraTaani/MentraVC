@@ -1,0 +1,575 @@
+{
+  "entityType" : "RULE_CHAIN",
+  "entity" : {
+    "additionalInfo" : {
+      "description" : ""
+    },
+    "configuration" : null,
+    "debugMode" : true,
+    "externalId" : null,
+    "firstRuleNodeId" : {
+      "entityType" : "RULE_NODE",
+      "id" : "757773f0-535e-11f1-b1ce-a9be7749f39e"
+    },
+    "id" : {
+      "entityType" : "RULE_CHAIN",
+      "id" : "1e6b1370-5357-11f1-b1ce-a9be7749f39e"
+    },
+    "name" : "Bus Rule Chain",
+    "root" : false,
+    "type" : "CORE"
+  },
+  "metaData" : {
+    "connections" : [ {
+      "fromIndex" : 0,
+      "toIndex" : 1,
+      "type" : "Post telemetry"
+    }, {
+      "fromIndex" : 1,
+      "toIndex" : 2,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 2,
+      "toIndex" : 3,
+      "type" : "True"
+    }, {
+      "fromIndex" : 2,
+      "toIndex" : 4,
+      "type" : "False"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 6,
+      "type" : "IncrementStops"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 7,
+      "type" : "UpdateParkedData"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 8,
+      "type" : "MarkAsParked"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 13,
+      "type" : "SaveCurrentTelemetry"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 14,
+      "type" : "GenerateTripSummary"
+    }, {
+      "fromIndex" : 4,
+      "toIndex" : 10,
+      "type" : "ResetStops"
+    }, {
+      "fromIndex" : 4,
+      "toIndex" : 11,
+      "type" : "StartNewTrip"
+    }, {
+      "fromIndex" : 4,
+      "toIndex" : 13,
+      "type" : "SaveCurrentTelemetry"
+    }, {
+      "fromIndex" : 6,
+      "toIndex" : 5,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 7,
+      "toIndex" : 5,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 8,
+      "toIndex" : 5,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 9,
+      "toIndex" : 5,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 10,
+      "toIndex" : 5,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 11,
+      "toIndex" : 12,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 12,
+      "toIndex" : 9,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 14,
+      "toIndex" : 15,
+      "type" : "Success"
+    } ],
+    "firstNodeIndex" : 0,
+    "nodes" : [ {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 417,
+        "layoutY" : 152
+      },
+      "configuration" : {
+        "version" : 0
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "757773f0-535e-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Check Telemetry",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 788,
+        "layoutY" : 148
+      },
+      "configuration" : {
+        "tellFailureIfAbsent" : false,
+        "fetchTo" : "METADATA",
+        "clientAttributeNames" : [ ],
+        "sharedAttributeNames" : [ ],
+        "serverAttributeNames" : [ "perimeter", "number_of_stops", "current_stops_count", "last_parked_data", "is_bus_parking", "trip_start_time" ],
+        "latestTsKeyNames" : [ ],
+        "getLatestValueWithTs" : false
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "7577c210-535e-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Fetch State & Attributes",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.metadata.TbGetAttributesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 81,
+        "layoutY" : 532
+      },
+      "configuration" : {
+        "latitudeKeyName" : "latitude",
+        "longitudeKeyName" : "longitude",
+        "perimeterType" : "CIRCLE",
+        "fetchPerimeterInfoFromMessageMetadata" : true,
+        "perimeterKeyName" : "ss_perimeter",
+        "centerLatitude" : null,
+        "centerLongitude" : null,
+        "range" : null,
+        "rangeUnit" : null,
+        "polygonsDefinition" : null
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "813b17c0-550f-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Zone Check",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.geo.TbGpsGeofencingFilterNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 325,
+        "layoutY" : 463
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "var isParking = metadata.ss_is_bus_parking === 'true';\r\nvar stopsCount = parseInt(metadata.ss_current_stops_count || '0');\r\nvar maxStops = parseInt(metadata.ss_number_of_stops || '2');\r\n\r\nif (isParking) {\r\n    // Bus is already fully parked. Keep overwriting the parked location with the newest point.\r\n    return ['UpdateParkedData']; \r\n} else {\r\n    stopsCount++;\r\n    if (stopsCount >= maxStops) {\r\n        // Threshold met. Transition to Parking.\r\n        return ['MarkAsParked', 'SaveCurrentTelemetry', 'GenerateTripSummary'];\r\n    } else {\r\n        // Still driving inside the school zone.\r\n        return ['IncrementStops', 'SaveCurrentTelemetry'];\r\n    }\r\n}",
+        "tbelScript" : "function nextRelation(metadata, msg) {\n    return ['one','nine'];\n}\nif(msgType == 'POST_TELEMETRY_REQUEST') {\n    return ['two'];\n}\nreturn nextRelation(metadata, msg);"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "813b3ed0-550f-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Evaluate Inside State",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbJsSwitchNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 322,
+        "layoutY" : 841
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "var isParking = metadata.ss_is_bus_parking === 'true';\r\nvar stopsCount = parseInt(metadata.ss_current_stops_count || '0');\r\nvar relations = ['SaveCurrentTelemetry']; // Always save the live data when outside\r\n\r\nif (isParking) {\r\n    // Bus just left the school after being parked. Start new trip.\r\n    relations.push('StartNewTrip');\r\n} else if (stopsCount > 0) {\r\n    // Bus was inside the zone but didn't stay long enough to park. Reset the counter.\r\n    relations.push('ResetStops');\r\n}\r\n\r\nreturn relations;",
+        "tbelScript" : "function nextRelation(metadata, msg) {\n    return ['one','nine'];\n}\nif(msgType == 'POST_TELEMETRY_REQUEST') {\n    return ['two'];\n}\nreturn nextRelation(metadata, msg);"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "813b65e0-550f-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Evaluate Outside State",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbJsSwitchNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 1224,
+        "layoutY" : 610
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "scope" : "SERVER_SCOPE",
+        "notifyDevice" : false,
+        "sendAttributesUpdatedNotification" : false,
+        "updateAttributesOnlyOnValueChange" : true
+      },
+      "configurationVersion" : 3,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a82f00-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "save attrebutes",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 808,
+        "layoutY" : 595
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "var current = parseInt(metadata.ss_current_stops_count || '0');\nreturn { msg: { current_stops_count: current + 1 }, metadata: metadata, msgType: 'POST_ATTRIBUTES_REQUEST' };",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a85610-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "9. Increment Stops",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 809,
+        "layoutY" : 406
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "// Packages the exact timestamp and payload to be saved as a server attribute\r\nvar parkedData = {\r\n    ts: metadata.ts,\r\n    payload: msg\r\n};\r\nreturn {\r\n    msg: { last_parked_data: JSON.stringify(parkedData), trip_start_time: metadata.ts }, \r\n    metadata: metadata, \r\n    msgType: 'POST_ATTRIBUTES_REQUEST'\r\n};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a85611-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "7. Prepare Parked Data",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 808,
+        "layoutY" : 514
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "var maxStops = parseInt(metadata.ss_number_of_stops || '2');\r\nreturn {\r\n    msg: { is_bus_parking: true, current_stops_count: maxStops, trip_start_time: metadata.ts }, \r\n    metadata: metadata, \r\n    msgType: 'POST_ATTRIBUTES_REQUEST'\r\n};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a87d20-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "8. Mark As Parked",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 958,
+        "layoutY" : 1121
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "return {\r\n    msg: { is_bus_parking: false, current_stops_count: 0 }, \r\n    metadata: metadata, \r\n    msgType: 'POST_ATTRIBUTES_REQUEST'\r\n};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a87d21-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Unpark",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 796,
+        "layoutY" : 854
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "return { msg: { current_stops_count: 0 }, metadata: metadata, msgType: 'POST_ATTRIBUTES_REQUEST' };",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a87d22-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "10. Reset Stops",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 780,
+        "layoutY" : 967
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "if (metadata.ss_last_parked_data) {\r\n    try {\r\n        var parkedData = JSON.parse(metadata.ss_last_parked_data);\r\n        metadata.ts = parkedData.ts.toString(); // Force the historical timestamp\r\n        return {\r\n            msg: parkedData.payload, \r\n            metadata: metadata, \r\n            msgType: 'POST_TELEMETRY_REQUEST'\r\n        };\r\n    } catch(e) {}\r\n}\r\n// Fallback\r\nreturn {msg: msg, metadata: metadata, msgType: 'POST_TELEMETRY_REQUEST'};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a87d23-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "11. Recover Parked Point",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 831,
+        "layoutY" : 1039
+      },
+      "configuration" : {
+        "defaultTTL" : 0,
+        "useServerTs" : false,
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        }
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a87d24-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "save time series",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 824,
+        "layoutY" : 687
+      },
+      "configuration" : {
+        "defaultTTL" : 0,
+        "useServerTs" : false,
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        }
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779604044157,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c7a87d25-5734-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save Live Device Data",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 806,
+        "layoutY" : 330
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "// Fetch the start time we saved during the \"Unpark\" phase\r\nvar startTime = parseInt(metadata.ss_trip_start_time || '0');\r\nvar endTime = parseInt(metadata.ts);\r\n\r\nvar tripData = {\r\n    start_time: startTime,\r\n    end_time: endTime\r\n};\r\n\r\nreturn {\r\n    msg: { trip_summary: tripData },\r\n    metadata: metadata,\r\n    msgType: 'POST_TELEMETRY_REQUEST'\r\n};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : null,
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "dbe9c8c0-5739-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Generate Trip Summary",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 1141,
+        "layoutY" : 331
+      },
+      "configuration" : {
+        "defaultTTL" : 0,
+        "useServerTs" : false,
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        }
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 0,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "dbe9efd0-5739-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save Live Device Data",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+    } ],
+    "ruleChainConnections" : null
+  },
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  }
+}
