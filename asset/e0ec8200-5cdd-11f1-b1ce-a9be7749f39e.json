@@ -1,0 +1,95 @@
+{
+  "entityType" : "ASSET",
+  "entity" : {
+    "additionalInfo" : {
+      "description" : ""
+    },
+    "assetProfileId" : {
+      "entityType" : "ASSET_PROFILE",
+      "id" : "e0070400-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "customerId" : {
+      "entityType" : "CUSTOMER",
+      "id" : "13814000-1dd2-11b2-8080-808080808080"
+    },
+    "externalId" : null,
+    "id" : {
+      "entityType" : "ASSET",
+      "id" : "e0ec8200-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "label" : null,
+    "name" : "Floor 2",
+    "type" : "Building"
+  },
+  "relations" : [ {
+    "additionalInfo" : null,
+    "from" : {
+      "entityType" : "ASSET",
+      "id" : "e0ec8200-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "to" : {
+      "entityType" : "ASSET",
+      "id" : "f62650b0-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "type" : "Contains",
+    "typeGroup" : "COMMON",
+    "version" : 41121
+  }, {
+    "additionalInfo" : null,
+    "from" : {
+      "entityType" : "ASSET",
+      "id" : "e0ec8200-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "to" : {
+      "entityType" : "ASSET",
+      "id" : "fb887d30-5cdd-11f1-b1ce-a9be7749f39e"
+    },
+    "type" : "Contains",
+    "typeGroup" : "COMMON",
+    "version" : 41122
+  } ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "aggregation_period",
+      "lastUpdateTs" : 1780295738624,
+      "longValue" : 30,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "last_calc_time",
+      "lastUpdateTs" : 1780231846501,
+      "longValue" : 0,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "monitoring_window_seconds",
+      "lastUpdateTs" : 1780296266877,
+      "longValue" : 10,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "tally_count",
+      "lastUpdateTs" : 1780231857047,
+      "longValue" : 0,
+      "strValue" : null
+    }, {
+      "booleanValue" : null,
+      "doubleValue" : null,
+      "jsonValue" : null,
+      "key" : "tally_sum",
+      "lastUpdateTs" : 1780231868580,
+      "longValue" : 0,
+      "strValue" : null
+    } ]
+  },
+  "calculatedFields" : [ ]
+}

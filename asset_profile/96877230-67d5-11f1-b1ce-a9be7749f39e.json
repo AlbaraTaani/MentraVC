@@ -1,0 +1,62 @@
+{
+  "entityType" : "ASSET_PROFILE",
+  "entity" : {
+    "default" : false,
+    "defaultDashboardId" : null,
+    "defaultEdgeRuleChainId" : null,
+    "defaultQueueName" : null,
+    "defaultRuleChainId" : null,
+    "description" : null,
+    "externalId" : null,
+    "id" : {
+      "entityType" : "ASSET_PROFILE",
+      "id" : "96877230-67d5-11f1-b1ce-a9be7749f39e"
+    },
+    "image" : null,
+    "name" : "Experiment_Profile"
+  },
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  },
+  "calculatedFields" : [ {
+    "configuration" : {
+      "type" : "SIMPLE",
+      "arguments" : {
+        "Environment_Status" : {
+          "defaultValue" : "1",
+          "refEntityKey" : {
+            "key" : "Environment_Status",
+            "type" : "TS_LATEST"
+          }
+        }
+      },
+      "expression" : "Environment_Status",
+      "output" : {
+        "type" : "TIME_SERIES",
+        "name" : "Production_State",
+        "strategy" : {
+          "type" : "IMMEDIATE",
+          "processCfs" : true,
+          "saveLatest" : true,
+          "saveTimeSeries" : true,
+          "sendWsUpdate" : true,
+          "ttl" : 0
+        }
+      },
+      "useLatestTs" : false
+    },
+    "configurationVersion" : 0,
+    "debugSettings" : {
+      "allEnabled" : false,
+      "allEnabledUntil" : 1781432474888,
+      "failuresEnabled" : true
+    },
+    "name" : "Environment_Status",
+    "tenantId" : {
+      "entityType" : "TENANT",
+      "id" : "9489c770-3743-11f1-899c-414230b97828"
+    },
+    "type" : "SIMPLE"
+  } ]
+}

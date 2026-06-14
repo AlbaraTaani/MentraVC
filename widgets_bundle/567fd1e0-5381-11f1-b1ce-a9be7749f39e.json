@@ -1,0 +1,22 @@
+{
+  "entityType" : "WIDGETS_BUNDLE",
+  "entity" : {
+    "alias" : "temp_bundle_to_test_the_bus_widget",
+    "description" : null,
+    "externalId" : null,
+    "id" : {
+      "entityType" : "WIDGETS_BUNDLE",
+      "id" : "567fd1e0-5381-11f1-b1ce-a9be7749f39e"
+    },
+    "image" : null,
+    "name" : "temp bundle to test the bus widget",
+    "order" : null,
+    "scada" : false,
+    "title" : "temp bundle to test the bus widget"
+  },
+  "fqns" : [ "anas_bus_list" ],
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  }
+}

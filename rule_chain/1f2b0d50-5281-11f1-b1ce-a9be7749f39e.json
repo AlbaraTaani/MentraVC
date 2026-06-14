@@ -1,0 +1,296 @@
+{
+  "entityType" : "RULE_CHAIN",
+  "entity" : {
+    "additionalInfo" : {
+      "description" : ""
+    },
+    "configuration" : null,
+    "debugMode" : false,
+    "externalId" : null,
+    "firstRuleNodeId" : {
+      "entityType" : "RULE_NODE",
+      "id" : "97e11da0-52bf-11f1-b1ce-a9be7749f39e"
+    },
+    "id" : {
+      "entityType" : "RULE_CHAIN",
+      "id" : "1f2b0d50-5281-11f1-b1ce-a9be7749f39e"
+    },
+    "name" : "Bus Trip Logic",
+    "root" : false,
+    "type" : "CORE"
+  },
+  "metaData" : {
+    "connections" : [ {
+      "fromIndex" : 0,
+      "toIndex" : 1,
+      "type" : "Post telemetry"
+    }, {
+      "fromIndex" : 1,
+      "toIndex" : 2,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 2,
+      "toIndex" : 3,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 4,
+      "type" : "START_ROUTE"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 5,
+      "type" : "END_ROUTE"
+    }, {
+      "fromIndex" : 5,
+      "toIndex" : 6,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 6,
+      "toIndex" : 7,
+      "type" : "Success"
+    } ],
+    "firstNodeIndex" : 0,
+    "nodes" : [ {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 315,
+        "layoutY" : 147
+      },
+      "configuration" : {
+        "version" : 0
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e11da0-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "filter type",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 636,
+        "layoutY" : 149
+      },
+      "configuration" : {
+        "tellFailureIfAbsent" : false,
+        "fetchTo" : "METADATA",
+        "clientAttributeNames" : [ ],
+        "sharedAttributeNames" : [ ],
+        "serverAttributeNames" : [ "trip_state", "trip_start_time", "perimeter" ],
+        "latestTsKeyNames" : [ ],
+        "getLatestValueWithTs" : false
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e4a010-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Fetch Memory & Geofence",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.metadata.TbGetAttributesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 70,
+        "layoutY" : 312
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "var lat = msg.latitude;\r\nvar lon = msg.longitude;\r\nvar motion = msg.motion_status;\r\n\r\n// Retrieve state from metadata (defaults to ended if empty)\r\nvar state = metadata.ss_trip_state || 'ended';\r\nvar startTime = metadata.ss_trip_start_time;\r\nvar perimeterStr = metadata.ss_perimeter; \r\n\r\nvar isInside = false;\r\n\r\n// 1. Geofence Calculation (Haversine)\r\nif (perimeterStr && lat !== undefined && lon !== undefined) {\r\n    var p = JSON.parse(perimeterStr);\r\n    var R = 6371; // Earth's radius in km\r\n    var dLat = (p.latitude - lat) * Math.PI / 180;\r\n    var dLon = (p.longitude - lon) * Math.PI / 180;\r\n    var a = Math.sin(dLat/2) * Math.sin(dLat/2) + \r\n            Math.cos(lat * Math.PI / 180) * Math.cos(p.latitude * Math.PI / 180) * \r\n            Math.sin(dLon/2) * Math.sin(dLon/2);\r\n    var distanceKm = R * (2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a))); \r\n    \r\n    isInside = (distanceKm <= p.radius);\r\n}\r\n\r\n// 2. State Machine Logic & Payload Formatting\r\nvar now = Date.now();\r\n\r\nif (state === 'ended' && motion === 'moving' && !isInside) {\r\n    // Format for START: Payload designed for Save Attributes\r\n    msg = { \r\n        trip_state: 'active', \r\n        trip_start_time: now \r\n    };\r\n    metadata.route = \"START_ROUTE\";\r\n} \r\nelse if (state === 'active' && motion === 'stopped' && isInside) {\r\n    // Format for END: Satisfies strict telemetry output requirement\r\n    msg = { \r\n        start_time: parseInt(startTime), \r\n        end_time: now \r\n    };\r\n    metadata.route = \"END_ROUTE\";\r\n} \r\nelse {\r\n    // Kills the message immediately to save database resources\r\n    return null; \r\n}\r\n\r\nreturn {msg: msg, metadata: metadata, msgType: msgType};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e4c720-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Evaluate State & Geofence",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 396,
+        "layoutY" : 316
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "return [metadata.route];",
+        "tbelScript" : "function nextRelation(metadata, msg) {\n    return ['one','nine'];\n}\nif(msgType == 'POST_TELEMETRY_REQUEST') {\n    return ['two'];\n}\nreturn nextRelation(metadata, msg);"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e4c721-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Route by Event",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbJsSwitchNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 757,
+        "layoutY" : 312
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "scope" : "SERVER_SCOPE",
+        "notifyDevice" : false,
+        "sendAttributesUpdatedNotification" : false,
+        "updateAttributesOnlyOnValueChange" : true
+      },
+      "configurationVersion" : 3,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e4ee30-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save Active State",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 77,
+        "layoutY" : 471
+      },
+      "configuration" : {
+        "defaultTTL" : 0,
+        "useServerTs" : false,
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        }
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e51540-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save Strict Log",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 372,
+        "layoutY" : 474
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "var resetMsg = { trip_state: 'ended' };\r\nreturn {msg: resetMsg, metadata: metadata, msgType: msgType};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e51541-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Format Reset Payload",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 669,
+        "layoutY" : 469
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "scope" : "SERVER_SCOPE",
+        "notifyDevice" : false,
+        "sendAttributesUpdatedNotification" : false,
+        "updateAttributesOnlyOnValueChange" : true
+      },
+      "configurationVersion" : 3,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1779113716190,
+        "failuresEnabled" : true
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "97e51542-52bf-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save Ended State",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode"
+    } ],
+    "ruleChainConnections" : null
+  },
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  }
+}

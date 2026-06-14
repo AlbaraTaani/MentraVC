@@ -1,0 +1,478 @@
+{
+  "entityType" : "RULE_CHAIN",
+  "entity" : {
+    "additionalInfo" : {
+      "description" : ""
+    },
+    "configuration" : null,
+    "debugMode" : true,
+    "externalId" : null,
+    "firstRuleNodeId" : {
+      "entityType" : "RULE_NODE",
+      "id" : "82ec81c0-5ce5-11f1-b1ce-a9be7749f39e"
+    },
+    "id" : {
+      "entityType" : "RULE_CHAIN",
+      "id" : "ce466ba0-5cdf-11f1-b1ce-a9be7749f39e"
+    },
+    "name" : "Floor Status",
+    "root" : false,
+    "type" : "CORE"
+  },
+  "metaData" : {
+    "connections" : [ {
+      "fromIndex" : 0,
+      "toIndex" : 2,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 1,
+      "toIndex" : 12,
+      "type" : "Post telemetry"
+    }, {
+      "fromIndex" : 2,
+      "toIndex" : 3,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 3,
+      "toIndex" : 5,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 5,
+      "toIndex" : 4,
+      "type" : "SAVE_TALLIES"
+    }, {
+      "fromIndex" : 5,
+      "toIndex" : 6,
+      "type" : "SAVE_STATUS"
+    }, {
+      "fromIndex" : 6,
+      "toIndex" : 7,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 6,
+      "toIndex" : 9,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 7,
+      "toIndex" : 8,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 9,
+      "toIndex" : 10,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 10,
+      "toIndex" : 11,
+      "type" : "Success"
+    }, {
+      "fromIndex" : 12,
+      "toIndex" : 0,
+      "type" : "Success"
+    } ],
+    "firstNodeIndex" : 1,
+    "nodes" : [ {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 632,
+        "layoutY" : 146
+      },
+      "configuration" : {
+        "originatorSource" : "RELATED",
+        "entityType" : null,
+        "entityNamePattern" : null,
+        "relationsQuery" : {
+          "fetchLastLevelOnly" : false,
+          "direction" : "TO",
+          "maxLevel" : 1,
+          "filters" : [ {
+            "relationType" : "Contains",
+            "entityTypes" : [ "ASSET" ]
+          } ]
+        }
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780295460425,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "7854b3d0-5ce1-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Context: Shift to Parent Room",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbChangeOriginatorNode"
+    }, {
+      "additionalInfo" : {
+        "description" : null,
+        "layoutX" : 318,
+        "layoutY" : 152
+      },
+      "configuration" : {
+        "version" : 0
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780295460425,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "82ec81c0-5ce5-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Route: Inbound Message Type",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 910,
+        "layoutY" : 144
+      },
+      "configuration" : {
+        "tellFailureIfAbsent" : false,
+        "fetchTo" : "METADATA",
+        "clientAttributeNames" : [ ],
+        "latestTsKeyNames" : [ ],
+        "serverAttributeNames" : [ "monitoring_window_seconds", "last_eval_time", "humidity_sum", "humidity_count", "comfort_score_sum", "comfort_score_count", "employees_present_sum", "employees_present_count" ],
+        "sharedAttributeNames" : [ ],
+        "getLatestValueWithTs" : false
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780298113021,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "e4048e10-5cf6-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Enrich: Fetch Tallies & Timers",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.metadata.TbGetAttributesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 1218,
+        "layoutY" : 146
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "var metricName = Object.keys(msg)[0]; \r\nvar val = parseFloat(msg[metricName]);\r\nvar now = new Date().getTime();\r\n\r\n// FIX 1: Read using the 'ss_' prefix applied by ThingsBoard\r\nvar windowSecs = parseInt(metadata.ss_monitoring_window_seconds || 120);\r\nvar lastEval = parseInt(metadata.ss_last_eval_time || now);\r\n\r\nvar sumKey = metricName + \"_sum\";\r\nvar countKey = metricName + \"_count\";\r\n\r\n// FIX 2: Read current tally using 'ss_', then add the incoming value\r\nvar currentSum = parseFloat(metadata[\"ss_\" + sumKey] || 0) + val;\r\nvar currentCount = parseInt(metadata[\"ss_\" + countKey] || 0) + 1;\r\n\r\n// Write back to metadata without 'ss_' so the Save node uses the clean database key\r\nmetadata[sumKey] = currentSum.toString();\r\nmetadata[countKey] = currentCount.toString();\r\n\r\nif (now - lastEval < (windowSecs * 1000)) {\r\n    var attributesToSave = {};\r\n    attributesToSave[sumKey] = currentSum;\r\n    attributesToSave[countKey] = currentCount;\r\n    if (!metadata.ss_last_eval_time) attributesToSave.last_eval_time = now;\r\n    \r\n    metadata.route_action = \"SAVE_TALLIES\";\r\n    return {msg: attributesToSave, metadata: metadata, msgType: \"POST_ATTRIBUTES_REQUEST\"};\r\n}\r\n\r\n// Window is closed! Calculate averages.\r\nvar metrics = [\"humidity\", \"comfort_score\", \"employees_present\"];\r\nvar newTelemetry = {};\r\nvar resetAttributes = { \"last_eval_time\": now };\r\nvar overall = \"normal\";\r\n\r\nfor (var i = 0; i < metrics.length; i++) {\r\n    var m = metrics[i];\r\n    // Use the newly calculated tally for the active metric, or fetch 'ss_' for the others\r\n    var mSum = parseFloat(m === metricName ? currentSum : (metadata[\"ss_\" + m + \"_sum\"] || 0));\r\n    var mCount = parseInt(m === metricName ? currentCount : (metadata[\"ss_\" + m + \"_count\"] || 0));\r\n    var status = \"unknown\"; \r\n\r\n    if (mCount > 0) {\r\n        var avg = mSum / mCount;\r\n        if (avg >= 40 && avg <= 70) status = \"normal\";\r\n        else if ((avg >= 25 && avg <= 39) || (avg >= 71 && avg <= 85)) status = \"attention\";\r\n        else status = \"alert\";\r\n    }\r\n\r\n    newTelemetry[m + \"_status\"] = status;\r\n    resetAttributes[m + \"_sum\"] = 0;\r\n    resetAttributes[m + \"_count\"] = 0;\r\n\r\n    if (status === \"alert\") overall = \"alert\";\r\n    else if (status === \"attention\" && overall !== \"alert\") overall = \"attention\";\r\n    else if (status === \"unknown\" && overall === \"normal\") overall = \"unknown\";\r\n}\r\n\r\nnewTelemetry.overall_room_status = overall;\r\nmetadata.resetAttributes = JSON.stringify(resetAttributes);\r\n\r\nmetadata.route_action = \"SAVE_STATUS\";\r\nreturn {msg: newTelemetry, metadata: metadata, msgType: \"POST_TELEMETRY_REQUEST\"};",
+        "tbelScript" : "var newMsg = {};\r\nfor (var key in msg) {\r\n    var val = parseFloat(msg[key]);\r\n    var status = \"alert\";\r\n    \r\n    if (val >= 40 && val <= 70) {\r\n        status = \"normal\";\r\n    } else if ((val >= 25 && val <= 39) || (val >= 71 && val <= 85)) {\r\n        status = \"attention\";\r\n    }\r\n    \r\n    newMsg[key] = val; // Keep original metric\r\n    newMsg[key + \"_status\"] = status; // Create a new telemetry key for the status\r\n}\r\nreturn {msg: newMsg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "e404b520-5cf6-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Logic: Check Window & Calc Averages",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 475,
+        "layoutY" : 367
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "scope" : "SERVER_SCOPE",
+        "notifyDevice" : false,
+        "sendAttributesUpdatedNotification" : false,
+        "updateAttributesOnlyOnValueChange" : true
+      },
+      "configurationVersion" : 3,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "e404dc30-5cf6-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save (Attr): Update Running Tallies",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 91,
+        "layoutY" : 366
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "return [metadata.route_action];",
+        "tbelScript" : "function nextRelation(metadata, msg) {\n    return ['one','nine'];\n}\nif(msgType == 'POST_TELEMETRY_REQUEST') {\n    return ['two'];\n}\nreturn nextRelation(metadata, msg);"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c110a930-5cfa-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Switch: Has Window Elapsed?",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbJsSwitchNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 469,
+        "layoutY" : 587
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "defaultTTL" : 0,
+        "useServerTs" : false
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "c110d040-5cfa-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save (TS): Room Status Evaluated",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 741,
+        "layoutY" : 482
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "return {msg: JSON.parse(metadata.resetAttributes), metadata: metadata, msgType: \"POST_ATTRIBUTES_REQUEST\"};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "90cf6420-5d7a-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Transform: Build Tally Reset Payload",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 1018,
+        "layoutY" : 471
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "scope" : "SERVER_SCOPE",
+        "notifyDevice" : false,
+        "sendAttributesUpdatedNotification" : false,
+        "updateAttributesOnlyOnValueChange" : true
+      },
+      "configurationVersion" : 3,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "90cf8b30-5d7a-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save (Attr): Reset Tallies to Zero",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgAttributesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 740,
+        "layoutY" : 679
+      },
+      "configuration" : {
+        "originatorSource" : "RELATED",
+        "entityType" : null,
+        "entityNamePattern" : null,
+        "relationsQuery" : {
+          "fetchLastLevelOnly" : false,
+          "direction" : "TO",
+          "maxLevel" : 1,
+          "filters" : [ {
+            "relationType" : "Contains",
+            "entityTypes" : [ "ASSET" ]
+          } ]
+        }
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "90cfb240-5d7a-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Context: Shift to Parent Floor",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbChangeOriginatorNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 1035,
+        "layoutY" : 681
+      },
+      "configuration" : {
+        "scriptLang" : "JS",
+        "jsScript" : "// Prefix the telemetry key with the Room Name so Floor 2 can tell them apart\r\nvar roomKey = metadata.entityName.replace(/\\s+/g, '_').toLowerCase() + \"_status\"; \r\nvar floorMsg = {};\r\nfloorMsg[roomKey] = msg.overall_room_status;\r\nreturn {msg: floorMsg, metadata: metadata, msgType: \"POST_TELEMETRY_REQUEST\"};",
+        "tbelScript" : "return {msg: msg, metadata: metadata, msgType: msgType};"
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "90cfb241-5d7a-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Transform: Prefix Key with Room Name",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.transform.TbTransformMsgNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 1274,
+        "layoutY" : 675
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "defaultTTL" : 0,
+        "useServerTs" : false
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780297692754,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "90cfd950-5d7a-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save (TS): Floor Central Data Hub",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+    }, {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 546,
+        "layoutY" : 53
+      },
+      "configuration" : {
+        "processingSettings" : {
+          "type" : "ON_EVERY_MESSAGE"
+        },
+        "defaultTTL" : 0,
+        "useServerTs" : false
+      },
+      "configurationVersion" : 1,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1780298642111,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "ac317800-5d86-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "Save (TS): Raw Device Data",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.telemetry.TbMsgTimeseriesNode"
+    } ],
+    "ruleChainConnections" : null
+  },
+  "relations" : [ ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  }
+}
