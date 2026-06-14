@@ -1,0 +1,21 @@
+{
+  "entityType" : "WIDGETS_BUNDLE",
+  "entity" : {
+    "alias" : "aatestforvc",
+    "description" : null,
+    "externalId" : null,
+    "id" : {
+      "entityType" : "WIDGETS_BUNDLE",
+      "id" : "95b29640-6736-11f1-b1ce-a9be7749f39e"
+    },
+    "image" : null,
+    "name" : "aaTestForVC",
+    "order" : null,
+    "scada" : false,
+    "title" : "aaTestForVC"
+  },
+  "fqns" : [ "test_time_series", "test_2_" ],
+  "attributes" : {
+    "SERVER_SCOPE" : [ ]
+  }
+}
