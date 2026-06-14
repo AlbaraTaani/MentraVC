@@ -7,7 +7,10 @@
     "configuration" : null,
     "debugMode" : true,
     "externalId" : null,
-    "firstRuleNodeId" : null,
+    "firstRuleNodeId" : {
+      "entityType" : "RULE_NODE",
+      "id" : "250c1bf0-67b8-11f1-b1ce-a9be7749f39e"
+    },
     "id" : {
       "entityType" : "RULE_CHAIN",
       "id" : "d52c1c70-67b7-11f1-b1ce-a9be7749f39e"
@@ -18,8 +21,34 @@
   },
   "metaData" : {
     "connections" : null,
-    "firstNodeIndex" : null,
-    "nodes" : [ ],
+    "firstNodeIndex" : 0,
+    "nodes" : [ {
+      "additionalInfo" : {
+        "description" : "",
+        "layoutX" : 389,
+        "layoutY" : 207
+      },
+      "configuration" : {
+        "version" : 0
+      },
+      "configurationVersion" : 0,
+      "createdTime" : 0,
+      "debugSettings" : {
+        "allEnabled" : false,
+        "allEnabledUntil" : 1781419401838,
+        "failuresEnabled" : false
+      },
+      "externalId" : null,
+      "id" : {
+        "entityType" : "RULE_NODE",
+        "id" : "250c1bf0-67b8-11f1-b1ce-a9be7749f39e"
+      },
+      "name" : "switch",
+      "queueName" : null,
+      "ruleChainId" : null,
+      "singletonMode" : false,
+      "type" : "org.thingsboard.rule.engine.filter.TbMsgTypeSwitchNode"
+    } ],
     "ruleChainConnections" : null
   },
   "relations" : [ ],
